@@ -1,2 +1,3 @@
-covid-19/
-    nbproject/
+nbproject/*
+!nbproject/project.properties
+!nbproject/project.xml
