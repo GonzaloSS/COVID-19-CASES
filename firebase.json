@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "headers":[{
+      "source": "**/*.@(xml|xsl)",
+      "headers":[{
+       "key": "Access-Control-Allow-Origin",
+       "value":"*" 
+      }]
+    }],
+    "public": "public_html",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

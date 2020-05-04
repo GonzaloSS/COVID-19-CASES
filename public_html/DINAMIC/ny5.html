@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script>
+function loadXMLDoc(filename)
+{
+if (window.ActiveXObject)
+  {
+  xhttp = new ActiveXObject("Msxml2.XMLHTTP");
+  }
+else 
+  {
+  xhttp = new XMLHttpRequest();
+  }
+xhttp.open("GET", filename, false);
+try {xhttp.responseType = "msxml-document"} catch(err) {} // Helping IE11
+xhttp.send("");
+return xhttp.responseXML;
+}
+
+function displayResult()
+{
+xml = loadXMLDoc("ny.xml");
+xsl = loadXMLDoc("ny5.xsl");
+// code for IE
+if (window.ActiveXObject || xhttp.responseType == "msxml-document")
+  {
+  ex = xml.transformNode(xsl);
+  document.getElementById("example").innerHTML = ex;
+  }
+// code for Chrome, Firefox, Opera, etc.
+else if (document.implementation && document.implementation.createDocument)
+  {
+  xsltProcessor = new XSLTProcessor();
+  xsltProcessor.importStylesheet(xsl);
+  resultDocument = xsltProcessor.transformToFragment(xml, document);
+  document.getElementById("example").appendChild(resultDocument);
+  }
+}
+</script>
+</head>
+<body onload="displayResult()">
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="ny2.html">Museum and Phone</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ny2.html">Museum and address</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ny3.html">Museum and Closing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ny4.html">Museum and Rates</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ny5.html">Museum and Specials</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../index.html">Back to covid tables</a>
+      </li>
+    </nav>
+<div id="example" >
+  
+</div>
+</body>
+</html>
